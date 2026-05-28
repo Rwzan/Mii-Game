@@ -40,9 +40,9 @@ function changeFace(direction) {
 }
 
 // --- إعدادات تعديل الشعر والرأس ---
-let hairScale = 0.7;  
+let hairScale = 0.8;  
 let hairX = 0; 
-let hairY = -90;      
+let hairY = -200;      
 
 // --- إعدادات تعديل الملامح ---
 let faceScale = 0.5;
@@ -56,7 +56,7 @@ window.onload = function() {
 
 // دالة التحكم بحركة وحجم الشعر
 function adjustHair(action) {
-    const step = 20; 
+    const step = 15; 
     const scaleStep = 0.05; 
 
     if (action === 'up') hairY -= step;
@@ -76,7 +76,7 @@ function applyHairTransform() {
 
 // دالة التحكم بالملامح
 function adjustFace(action) {
-    const step = 15; 
+    const step = 10; 
     const scaleStep = 0.04;
 
     if (action === 'up') faceY -= step;
