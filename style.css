@@ -1,102 +1,137 @@
+/* --- تنسيق خلفية الصفحة كاملة --- */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #eef2f3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* نوع الخط المستخدم في الصفحة */
+    background-color: #eef2f3; /* لون خلفية الصفحة (رمادي فاتح جداً مائل للأزرق) */
+    display: flex; /* تفعيل نظام الفليكس لتسهيل ترتيب العناصر */
+    flex-direction: column; /* ترتيب العناصر عمودياً فوق بعضها (العنوان ثم اللعبة) */
+    align-items: center; /* موازاة اللعبة والعنوان في منتصف الصفحة أفقياً */
+    justify-content: center; /* موازاة اللعبة والعنوان في منتصف الصفحة عمودياً */
+    min-height: 100vh; /* جعل الصفحة تأخذ طول الشاشة بالكامل لتوزيع العناصر صح */
+    margin: 0; /* إلغاء الحواف الخارجية التلقائية للصفحة */
+    padding: 20px; /* ترك مسافة أمان داخلية حول الشاشة */
 }
 
-h1 { color: #333; margin-bottom: 10px; }
+/* --- تنسيق العنوان الرئيسي --- */
+h1 { 
+    color: #333; /* لون خط العنوان (رمادي غامق قريب للأسود) */
+    margin-bottom: 5px; /* مسافة تحت العنوان قبل صندوق اللعبة */
+    margin-top: -20px;
+}
 
+
+
+/* --- تنسيق الصندوق الأبيض المحيط باللعبة كاملة --- */
 .game-wrapper {
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    background: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 20px; /* مسافة داخلية بين حدود الصندوق والعناصر التي بداخله */
+    border-radius: 15px; /* تدوير زوايا الصندوق الأبيض ليصبح شكله ناعم */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* إضافة ظل خفيف خلف الصندوق يعطيه عمق */
+    background: rgb(255, 236, 236); /* لون خلفية الصندوق (أبيض سادة) */
+    display: flex; /* تفعيل الفليكس لترتيب محتويات الصندوق */
+    flex-direction: column; /* ترتيب محتويات الصندوق عمودياً (العروسة ثم الأزرار) */
+    align-items: center; /* موازاة المحتويات في المنتصف تماماً */
 }
 
+/* --- تنسيق صندوق عرض الشخصية (المربع الفضي للعروسة) --- */
 .character-preview {
-    position: relative;
-    width: 400px;
-    height: 500px; /* كبرنا الارتفاع هنا إلى 500 بكسل عشان نعطي مساحة فوق */
-    background-color: #f7f9fa;
-    border: 3px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
+    position: relative; /* ضروري جداً! يجعل هذا الصندوق هو المرجع لجميع الطبقات التي بداخله */
+    width: 300px; /* عرض مربع العروسة بالبكسل */
+    height: 500px; /* طول مربع العروسة بالبكسل (كبرناه عشان مساحة الرأس) */
+    background-color: #f7f9fa; /* لون خلفية مربع العروسة (رمادي فاتح جداً) */
+    border: 3px solid #ddd; /* إطار رمادي يحدد مربع العروسة */
+    border-radius: 10px; /* تدوير زوايا مربع العروسة */
+    overflow: hidden; /* سحر الإخفاء! أي صورة تطلع برا حدود الـ 500 بكسل يتم قصها وإخفاؤها تلقائياً */
 }
 
+/* --- تنسيق موحد لجميع طبقات الصور (جسم، شعر، وجه) --- */
 .layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    user-select: none;
+    position: absolute; /* يجعل الصور تطير فوق بعضها البعض بدلاً من أن تنزل تحت بعض */
+    top: 0; /* تثبيت أعلى الصورة مع أعلى الصندوق الرئيسي */
+    left: 0; /* تثبيت يسار الصورة مع يسار الصندوق الرئيسي */
+    width: 100%; /* جعل الصورة تتمدد لتغطي عرض الصندوق بالكامل (100%) */
+    height: 100%; /* جعل الصورة تتمدد لتغطي طول الصندوق بالكامل (100%) */
+    object-fit: contain; /* يحافظ على أبعاد الصورة الأصلية ويمنع تمطيطها أو تشويهها */
+    user-select: none; /* يمنع اللاعب من تحديد الصورة أو سحبها بالماوس بالخطأ أثناء اللعب */
 }
 
-/* ترتيب الطبقات */
+/* --- تحديد ترتيب الطبقات (من الأسفل للأعلى) والمحاذاة --- */
 #layer-body { 
-    z-index: 1; 
-    margin-top: 80px; /* هذا السطر السحري بينزل الجسم والملابس لتحت ويفضي مساحة للرأس! */
+    z-index: 1; /* الطابق الأول (في الخلف تماماً): الجسم والملابس */
+    margin-top: 80px; /* يدفع الجسم والملابس لأسفل بمقدار 80 بكسل ليفسح مجالاً للرأس في الأعلى */
 }
-#layer-hair  { z-index: 2; } 
-#layer-face  { z-index: 3; } 
+#layer-hair  { 
+    z-index: 2; /* الطابق الثاني: الشعر (الذي يحتوي أيضاً على لون الوجه الفاضي) */
+} 
+#layer-face  { 
+    z-index: 3; /* الطابق الثالث (في المقدمة): ملامح الوجه من عيون وفم لتظهر فوق الرأس */
+} 
 
+/* --- تنسيق الحاوية الكبيرة للأزرار --- */
 .controls {
-    margin-top: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    margin-top: 20px; /* مسافة بين مربع العروسة وبداية لوحة الأزرار */
+    width: 100%; /* جعل اللوحة تأخذ كامل العرض المتاح */
+    display: flex; /* تفعيل الفليكس لترتيب مجموعات الأزرار */
+    flex-direction: column; /* ترتيب المجموعات عمودياً تحت بعضها */
+    gap: 15px; /* مسافة ثابتة (15 بكسل) بين كل مجموعة أزرار ومجموعة أخرى */
 }
 
+/* --- تنسيق خلفية مجموعة التحكم الواحدة (مثل سطر تحكم الشعر) --- */
 .control-group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #f0f2f5;
-    padding: 10px 15px;
-    border-radius: 8px;
-    width: 320px;
+    display: flex; /* تفعيل الفليكس لترتيب (زر سابق - نص - زر تالي) أفقياً */
+    align-items: center; /* موازاة الأزرار والنص عمودياً في المنتصف */
+    justify-content: space-between; /* توزيع العناصر بالتساوي (زر يمين، زر يسار، والنص في النص) */
+    background: #f0f2f5; /* لون خلفية السطر (رمادي ناعم) */
+    padding: 10px 15px; /* مسافة داخلية لمنع التصاق الأزرار بالحدود */
+    border-radius: 8px; /* تدوير زوايا السطر */
+    width: 320px; /* العرض الثابت لسطر التحكم */
 }
 
-.control-group span { font-weight: bold; color: #555; }
+/* --- تنسيق النصوص داخل أسطر التحكم (مثل كلمة "الشعر: 1") --- */
+.control-group span { 
+    font-weight: bold; /* جعل الخط عريضاً */
+    color: #555; /* لون الخط (رمادي متوسط) */
+}
 
+/* --- حاوية الأزرار الصغيرة الخاصة بالأسهم والإشارات --- */
 .mini-buttons {
-    display: flex;
-    gap: 5px;
+    display: flex; /* ترتيب أزرار الأسهم بجانب بعضها أفقياً */
+    gap: 5px; /* مسافة صغيرة جداً (5 بكسل) بين كل سهم وسهم */
 }
 
+/* --- التنسيق الأساسي لجميع الأزرار العادية (التالي والسابق) --- */
 button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.2s;
+    background-color: #4CAF50; /* لون زر التحكم الأساسي (الأخضر) */
+    color: white; /* لون نص أو سهم الزر (أبيض) */
+    border: none; /* إلغاء الإطار التلقائي البشع للزر */
+    padding: 8px 12px; /* حجم الزر الداخلي (الطول والعرض) */
+    font-size: 14px; /* حجم الخط داخل الزر */
+    border-radius: 5px; /* تدوير زوايا الزر */
+    cursor: pointer; /* تغيير شكل الماوس إلى يد عند التأشير على الزر ليُعلم اللاعب أنه قابل للضغط */
+    transition: background 0.2s; /* سحر النعومة! يجعل تغير اللون عند التأشير يأخذ جزءاً من الثانية بدلاً من التغير المفاجئ */
 }
 
-button:hover { background-color: #45a049; }
+/* --- تأثير حركة الماوس فوق الأزرار العادية --- */
+button:hover { 
+    background-color: #45a049; /* يغير لون الزر إلى أخضر غامق قليلاً عند وضع الماوس عليه */
+}
 
-/* أزرار التحكم بالملامح */
-.btn-adjust { background-color: #607d8b; padding: 6px 10px; font-size: 16px;}
-.btn-adjust:hover { background-color: #455a64; }
+/* --- تنسيق خاص بأزرار التعديل اليدوي (الأسهم، الزائد، الناقص) --- */
+.btn-adjust { 
+    background-color: #607d8b; /* يغير لون أزرار الأسهم إلى (الرمادي المزرق) لتمييزها عن أزرار التقليب */
+    padding: 6px 10px; /* مقاس أصغر ومناسب لرموز الإيموجي */
+    font-size: 16px; /* تكبير حجم الإيموجي داخل الزر ليصبح واضحاً */
+}
 
+/* --- تأثير حركة الماوس فوق أزرار التعديل اليدوي --- */
+.btn-adjust:hover { 
+    background-color: #455a64; /* يغير اللون إلى رمادي غامق جداً عند وضع الماوس عليه */
+}
+
+/* --- تنسيق الحاوية الذكية التي تجمع (الشعر والوجه) لتحريك الرأس كاملاً --- */
 #hair-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
+    position: absolute; /* يجعل الحاوية تطير فوق الجسم */
+    top: 0; /* محاذاة من الأعلى */
+    left: 0; /* محاذاة من اليسار */
+    width: 100%; /* تأخذ كامل العرض */
+    height: 100%; /* تأخذ كامل الطول */
+    z-index: 2; /* وضعها في الطابق الثاني لتكون فوق الجسم (z-index: 1) وتحتوي بداخلها على الشعر والوجه */
 }
