@@ -18,7 +18,7 @@ const totalHairStyles = 28;
 function changeHair(direction) {
     currentHairIndex += direction;
     if (currentHairIndex > totalHairStyles) currentHairIndex = 1;
-    else if (currentHairIndex < 1) currentHairIndex = totalHairStyles; // تم تصليح التعليق هنا الحين!
+    else if (currentHairIndex < 1) currentHairIndex = totalHairStyles;
 
     let hairFileName = currentHairIndex < 10 ? '0' + currentHairIndex : currentHairIndex;
     document.getElementById('layer-hair').src = `assets/hair${hairFileName}.png`;
@@ -39,8 +39,9 @@ function changeFace(direction) {
     document.getElementById('face-label').innerText = `الوجه: ${currentFaceIndex}`;
 }
 
-// --- إعدادات تعديل الحاوية كاملة (الشعر والرقبة) ---
+// --- إعدادات تعديل الشعر والرأس ---
 let hairScale = 0.7;  
+let hairX = 0; 
 let hairY = -90;      
 
 // --- إعدادات تعديل الملامح ---
@@ -55,11 +56,13 @@ window.onload = function() {
 
 // دالة التحكم بحركة وحجم الشعر
 function adjustHair(action) {
-    const step = 5;
-    const scaleStep = 0.03;
+    const step = 20; 
+    const scaleStep = 0.05; 
 
     if (action === 'up') hairY -= step;
     if (action === 'down') hairY += step;
+    if (action === 'left') hairX -= step;  
+    if (action === 'right') hairX += step; 
     if (action === 'plus') hairScale += scaleStep;
     if (action === 'minus') hairScale -= scaleStep;
 
@@ -67,14 +70,14 @@ function adjustHair(action) {
 }
 
 function applyHairTransform() {
-    document.getElementById('hair-container').style.transform = `translateY(${hairY}px) scale(${hairScale})`;
+    document.getElementById('hair-container').style.transform = `translate(${hairX}px, ${hairY}px) scale(${hairScale})`;
     document.getElementById('hair-container').style.transformOrigin = 'center bottom';
 }
 
 // دالة التحكم بالملامح
 function adjustFace(action) {
-    const step = 5;
-    const scaleStep = 0.03;
+    const step = 15; 
+    const scaleStep = 0.04;
 
     if (action === 'up') faceY -= step;
     if (action === 'down') faceY += step;
