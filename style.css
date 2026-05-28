@@ -1,0 +1,102 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 { color: #333; margin-bottom: 10px; }
+
+.game-wrapper {
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.character-preview {
+    position: relative;
+    width: 400px;
+    height: 500px; /* كبرنا الارتفاع هنا إلى 500 بكسل عشان نعطي مساحة فوق */
+    background-color: #f7f9fa;
+    border: 3px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    user-select: none;
+}
+
+/* ترتيب الطبقات */
+#layer-body { 
+    z-index: 1; 
+    margin-top: 80px; /* هذا السطر السحري بينزل الجسم والملابس لتحت ويفضي مساحة للرأس! */
+}
+#layer-hair  { z-index: 2; } 
+#layer-face  { z-index: 3; } 
+
+.controls {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f0f2f5;
+    padding: 10px 15px;
+    border-radius: 8px;
+    width: 320px;
+}
+
+.control-group span { font-weight: bold; color: #555; }
+
+.mini-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover { background-color: #45a049; }
+
+/* أزرار التحكم بالملامح */
+.btn-adjust { background-color: #607d8b; padding: 6px 10px; font-size: 16px;}
+.btn-adjust:hover { background-color: #455a64; }
+
+#hair-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
